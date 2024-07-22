@@ -13,9 +13,26 @@ import streamlit as st
 from PIL import Image
 import tensorflow as tf
 import numpy as np
+import os 
+
+
+# Double-check and print the path
+path_to_model = os.join(os.getcwd(),Potato_classification_model.keras)
+print(f"Loading model from: {path_to_model}")
+
+try:
+    model = tf.keras.models.load_model(path_to_model)
+except Exception as e:
+    print(f"Error loading model: {e}")
+    # Handle the error (e.g., display an error message to the user)
+else:
+    # Use the loaded model for your app's logic
+    # ...
+
 
 # Load the model
-model = tf.keras.models.load_model('Potato_classification_model.keras')
+model = tf.keras.models.load_model(path_to_model)
+
 
 st.title("Potato Leaf Disease Classifier")
 
