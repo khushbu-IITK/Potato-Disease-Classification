@@ -15,7 +15,7 @@ import tensorflow as tf
 import numpy as np
 
 # Load the model
-model = tf.keras.models.load_model('Saved_Model')
+model = tf.keras.models.load_model('Potato_classification_model.keras')
 
 st.title("Potato Leaf Disease Classifier")
 
