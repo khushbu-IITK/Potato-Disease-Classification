@@ -4,7 +4,7 @@ import numpy as np
 import tensorflow as tf
 
 # Load the model
-model_path = "Potato_classification_model.keras"
+model_path = "Potato_classification_model.h5"
 model = tf.keras.models.load_model(model_path)
 
 # Define image preprocessing function
