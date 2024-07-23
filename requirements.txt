@@ -3,5 +3,4 @@ tensorflow
 numpy 
 pandas
 pillow
-os
 uvicorn
