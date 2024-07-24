@@ -5,8 +5,12 @@ import tensorflow as tf
 import os
 
 # Load the model
-current_dir = os.path.dirname(os.path.abspath(__file__))
+try:
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+except NameError:
+    current_dir = os.getcwd()
 
+print("Current directory:", current_dir)
 model_path = os.path.join(current_dir, 'Potato_classification_model.h5')
 model = tf.keras.models.load_model(model_path)
 
