@@ -5,7 +5,7 @@ import tensorflow as tf
 import os
 
 # Load the model
-model_path = 'Potato_classification_model.h5'  # Update this to your model's path
+model_path = 'potatoes.h5'  # Update this to your model's path
 if not os.path.exists(model_path):
     st.error(f"Model path does not exist: {model_path}")
 else:
