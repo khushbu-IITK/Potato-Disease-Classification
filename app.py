@@ -5,13 +5,12 @@ import tensorflow as tf
 import os
 
 # Load the model
-try:
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-except NameError:
-    current_dir = os.getcwd()
+model_path = 'Potato_classification_model.h5'  # Update this to your model's path
+if not os.path.exists(model_path):
+    st.error(f"Model path does not exist: {model_path}")
+else:
+    st.write(f"Loading model from: {model_path}")
 
-print("Current directory:", current_dir)
-model_path = os.path.join(current_dir, 'Potato_classification_model.h5')
 model = tf.keras.models.load_model(model_path)
 
 # Define image preprocessing function
