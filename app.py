@@ -1,12 +1,13 @@
+import os
 import streamlit as st
 import tensorflow as tf
+from tensorflow.keras.losses import SparseCategoricalCrossentropy
 from tensorflow.keras.preprocessing import image
 from PIL import Image
 import numpy as np
-import os
 
 # Define your model path
-model_path = 'Potato_classification_model.h5'  # Update this to your model's path
+model_path = 'path_to_your_model.h5'  # Update this to your model's path
 
 # Function to get script directory (useful for relative paths)
 def get_script_directory():
@@ -25,14 +26,13 @@ else:
     st.write(f"Loading model from: {model_full_path}")
 
     try:
-        # Import your custom objects if any (if not, leave it empty)
-        # from my_custom_objects import CustomLayer, custom_loss_function
+        # Custom object dictionary
+        custom_objects = {
+            'SparseCategoricalCrossentropy': SparseCategoricalCrossentropy
+        }
 
-        # Load the model with custom objects if necessary
-        model = tf.keras.models.load_model(model_full_path)  # , custom_objects={
-        #    'CustomLayer': CustomLayer,
-        #    'custom_loss_function': custom_loss_function
-        # })
+        # Load the model with custom objects
+        model = tf.keras.models.load_model(model_full_path, custom_objects=custom_objects)
 
         st.write("Model loaded successfully!")
     except Exception as e:
