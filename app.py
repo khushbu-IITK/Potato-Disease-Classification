@@ -4,7 +4,9 @@ import numpy as np
 import tensorflow as tf
 
 # Load the model
-model_path = "Potato_classification_model.h5"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+model_path = os.path.join(current_dir, 'Potato_classification_model.h5')
 model = tf.keras.models.load_model(model_path)
 
 # Define image preprocessing function
