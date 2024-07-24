@@ -13,6 +13,14 @@ else:
 
 model = tf.keras.models.load_model(model_path)
 
+
+# Saving the model
+model.save('new_model_path.h5')
+
+# Loading the model
+model = tf.keras.models.load_model('new_model_path.h5')
+
+
 # Define image preprocessing function
 def preprocess_image(image):
     # Convert the image to RGB just in case it's a different mode
