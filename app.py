@@ -7,7 +7,7 @@ from PIL import Image
 import numpy as np
 
 # Define your model path
-model_path = 'Potato_classification_model.h5'  # Update this to your model's path
+model_path = 'potatoes.h5'  # Update this to your model's path
 
 # Function to get script directory (useful for relative paths)
 def get_script_directory():
@@ -18,6 +18,9 @@ def get_script_directory():
 
 # Full path to the model
 model_full_path = os.path.join(get_script_directory(), model_path)
+
+# Initialize model variable
+model = None
 
 # Check if the model path exists
 if not os.path.exists(model_full_path):
@@ -60,11 +63,4 @@ if uploaded_file is not None:
     # Preprocess the image
     img_array = preprocess_image(img)
 
-    # Predict the class and confidence
-    predictions = model.predict(img_array)
-    predicted_class = np.argmax(predictions[0])
-    confidence = np.max(predictions[0]) * 100
-
-    # Display the result
-    st.write(f"Predicted Class: {predicted_class}")
-    st.write(f"Confidence: {confidence:.2f}%")
+    # Ensure model is loaded before making predictions
