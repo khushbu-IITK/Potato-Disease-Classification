@@ -7,7 +7,7 @@ from PIL import Image
 import numpy as np
 
 # Define your model path
-model_path = 'potatoes.h5'  # Update this to your model's path
+model_path = 'Potato_classification_model.h5'  # Update this to your model's path
 
 # Function to get script directory (useful for relative paths)
 def get_script_directory():
