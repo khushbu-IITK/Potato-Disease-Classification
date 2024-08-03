@@ -14,6 +14,8 @@ from PIL import Image
 import tensorflow as tf
 import numpy as np
 
+class_name = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
+
 # Load the model
 model = tf.keras.models.load_model('potato_model.h5')
 
@@ -21,18 +23,18 @@ st.title("Potato Leaf Disease Classifier")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
-class_name = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
-
+# Function to preprocess the image
+def preprocess_image(image):
+    img = image.resize((256, 256))  # Resize to the model's expected input size
+    img_array = tf.keras.preprocessing.image.img_to_array(img)
+    return img_array
+    
 # Defining predict function
 def predict(model, img):
     BATCH_SIZE =32
-    # IMAGE_SIZE = img.shape
-    batch = np.zeros(BATCH_SIZE, img.shape[:])
-    img_array = tf.keras.preprocessing.image.img_to_array(images[i].numpy())
-    img_array = tf.expand_dims(img_array, 0) 
-    batch[0] = img_array
-
-    predictions = model.predict(batch)
+    Batch = np.zeros(BATCH_SIZE, img.shape[0],img.shape[1],img.shape[2])
+    Batch[0] = img
+    predictions = model.predict(Batch)
 
     predicted_class = class_name[np.argmax(predictions[0])]
     confidence = round(100 * (np.max(predictions[0])), 2)
@@ -42,8 +44,11 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption='Uploaded Image.', use_column_width=True)
     st.write("Classifying...")
+    
     # Preprocess the image and make predictions
+    img_array = preprocess_image(image)
+    ## img = tf.keras.preprocessing.image.load_img(img_path, target_size=(256, 256))
     #prediction = model.predict(preprocess_image(image))  # Define preprocess_image function
-    prediction, confidence = predict(model, uploaded_file)
+    prediction, confidence = predict(model, img_array)
     st.write(f"\nPredicted class: {prediction}.\n Confidence: {confidence: .2f}%")  # Adjust based on your output
 
