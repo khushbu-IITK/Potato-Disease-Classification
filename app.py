@@ -15,10 +15,7 @@ import tensorflow as tf
 import numpy as np
 import os
 
-# CHECK
-print(os.getcwd())
 class_name = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
-
 # Load the model
 model = tf.keras.models.load_model('Potato_classification_model (1).h5')
 
@@ -50,8 +47,8 @@ if uploaded_file is not None:
     
     # Preprocess the image and make predictions
     img_array = preprocess_image(image)
-    ## img = tf.keras.preprocessing.image.load_img(img_path, target_size=(256, 256))
-    #prediction = model.predict(preprocess_image(image))  # Define preprocess_image function
+    # Predicting the preprocessed data
     prediction, confidence = predict(model, img_array)
-    st.write(f"\nPredicted class: {prediction}.\n Confidence: {confidence: .2f}%")  # Adjust based on your output
+    st.write(f"\nPredicted class: {prediction}.\n")  
+    st.write(f"Confidence: {confidence: .2f}%\n")  
 
