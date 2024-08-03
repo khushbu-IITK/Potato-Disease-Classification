@@ -13,7 +13,10 @@ import streamlit as st
 from PIL import Image
 import tensorflow as tf
 import numpy as np
+import os
 
+# CHECK
+print(os.getcwd())
 class_name = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
 
 # Load the model
