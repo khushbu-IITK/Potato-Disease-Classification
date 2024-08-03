@@ -35,7 +35,7 @@ def preprocess_image(image):
 # Defining predict function
 def predict(model, img):
     BATCH_SIZE =32
-    Batch = np.zeros(BATCH_SIZE, img.shape[0],img.shape[1],img.shape[2])
+    Batch = np.zeros((BATCH_SIZE, img.shape[0],img.shape[1],img.shape[2]))
     Batch[0] = img
     predictions = model.predict(Batch)
 
