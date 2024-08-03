@@ -25,10 +25,14 @@ class_name = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy
 
 # Defining predict function
 def predict(model, img):
+    BATCH_SIZE =32
+    # IMAGE_SIZE = img.shape
+    batch = np.zeros(BATCH_SIZE, img.shape[:])
     img_array = tf.keras.preprocessing.image.img_to_array(images[i].numpy())
-    img_array = tf.expand_dims(img_array, 0)
+    img_array = tf.expand_dims(img_array, 0) 
+    batch[0] = img_array
 
-    predictions = model.predict(img_array)
+    predictions = model.predict(batch)
 
     predicted_class = class_name[np.argmax(predictions[0])]
     confidence = round(100 * (np.max(predictions[0])), 2)
