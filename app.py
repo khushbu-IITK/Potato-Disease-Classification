@@ -17,7 +17,7 @@ import os
 
 class_name = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
 # Load the model
-model = tf.keras.models.load_model('Potato_classification_model (1).h5')
+model = tf.keras.models.load_model('Potato_classification_model.h5')
 
 st.title("Potato Leaf Disease Classifier")
 
